@@ -15,6 +15,7 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
 var Todo     = require('./app/models/todo');
+const allowCors = require('./app/cors/cors');
 
 mongoose.connect('mongodb://dizwes:dw23012016@ds157089.mlab.com:57089/todowes'); //via Modulus
 
@@ -23,6 +24,7 @@ mongoose.connect('mongodb://dizwes:dw23012016@ds157089.mlab.com:57089/todowes');
  */
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(allowCors);
 
 /** Definição da porta onde será executada a nossa aplicação */
 var port = process.env.PORT || 8000;
