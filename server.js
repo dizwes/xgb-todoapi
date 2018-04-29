@@ -14,7 +14,7 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
-var Usuario     = require('./app/models/usuario');
+var Todo     = require('./app/models/todo');
 
 mongoose.connect('mongodb://dizwes:dw23012016@ds157089.mlab.com:57089/todowes'); //via Modulus
 
