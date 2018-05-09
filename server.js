@@ -17,7 +17,7 @@ var mongoose    = require('mongoose');
 var Todo     = require('./app/models/todo');
 const allowCors = require('./app/cors/cors');
 
-mongoose.connect('mongodb://dizwes:dw23012016@ds157089.mlab.com:57089/todowes'); //via Modulus
+mongoose.connect('mongodb://dizwes:dw23012016@ds117590.mlab.com:17590/xgb-todoapi'); //via Modulus
 
 /** Configuração da variável 'app' para usar o 'bodyParser()'.
  * Ao fazermos isso nos permitirá retornar os dados a partir de um POST
@@ -43,13 +43,13 @@ router.use(function(req, res, next) {
 
 /* Rota de Teste para sabermos se tudo está realmente funcionando (acessar através: GET: http://localhost:8000/api) */
 router.get('/', function(req, res) {
-    res.json({ message: 'YEAH! Seja Bem-Vindo ao ToDoWes API' });
+    res.json({ message: 'YEAH! Seja Bem-Vindo a xGB ToDo API' });
 });
 
 // Rotas que irão terminar em '/todos' - (servem tanto para: GET All & POST)
 router.route('/todos')
 
-    /* 1) Método: Criar Usuario (acessar em: POST http://localhost:8080/api/todos */
+    /* 1) Método: Criar ToDo (acessar em: POST http://localhost:8080/api/todos */
     .post(function(req, res) {
         var todo = new Todo();
 
@@ -57,6 +57,7 @@ router.route('/todos')
         todo.description = req.body.description;
         todo.done = req.body.done;
         todo.createdAt = req.body.createdAt;
+        todo.address = req.body.address;
 
         todo.save(function(error) {
             if(error)
@@ -105,6 +106,7 @@ router.route('/todos/:todo_id')
             todo.description = req.body.description;
             todo.done = req.body.done;
             todo.createdAt = req.body.createdAt;
+            todo.address = req.body.address;
 
             //Terceiro: Agora que já atualizamos os campos, precisamos salvar essa alteração....
             todo.save(function(error) {
